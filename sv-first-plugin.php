@@ -24,11 +24,74 @@ class sv_first_plugin
 		// call back for saving post
 		add_action( 'save_post', array( $this, 'save_sample_field' ) );
 		
-		add_filter( 'template_include',  array( $this, 'view_template' ));		
+		// filter template include for viewing template
+		add_filter( 'template_include',  array( $this, 'view_template' ));
+		
+		// filter post join to include meta data
+		add_filter('posts_join', array( $this, 'search_join' ));
+		
+		//filter for modify the search query 
+		add_filter( 'posts_where', array( $this, 'search_modify' ));
+		
+		//filter for post distinct to add in SQL query
+		add_filter( 'posts_distinct', array( $this, 'search_distinct' ));
+		
+		//callback action for css
+		add_action( 'wp_enqueue_scripts', array( $this, 'style_css' ) );
+		
+		
+	}
+	// css function
+	public function style_css() 
+	{
+		wp_register_style( 'samplestyle', plugins_url( '/style.css', __FILE__ ));
+		wp_enqueue_style( 'samplestyle' );
+	}
+
+	
+	// distinct keyword to the SQL query in order to prevent returning duplicates.	
+	function search_distinct( $where ) 
+	{
+    	global $wpdb;
+
+    	if ( is_search() ) 
+    	{
+        	return "DISTINCT";
+    	}
+
+    	return $where;
 	}
 	
-	//filtering template	
-	function view_template( $template )
+	//  modify the wordpress search query to include custom fields.
+	function search_modify( $where ) 
+	{
+    	global $wpdb;
+   
+    	if ( is_search() ) 
+    	{
+        	$where = preg_replace(
+            	"/\(\s*".$wpdb->posts.".post_title\s+LIKE\s*(\'[^\']+\')\s*\)/",
+            	"(".$wpdb->posts.".post_title LIKE $1) OR (".$wpdb->postmeta.".meta_value LIKE $1)", $where );
+    	}
+
+    	return $where;
+	}
+	
+	// to include the custom fields data in our search
+	public function search_join( $join ) 
+	{
+   	 global $wpdb;
+
+    	if ( is_search() ) 
+    	{    
+    	    $join .=' LEFT JOIN '.$wpdb->postmeta. ' ON '. $wpdb->posts . '.ID = ' . $wpdb->postmeta . '.post_id ';
+    	}
+    
+    	return $join;
+    }
+		
+  	//filtering template	
+	public function view_template( $template )
 	{	
     	if( is_archive( 'podcast' ) ) 
     	{
@@ -63,6 +126,7 @@ class sv_first_plugin
                 'not_found_in_trash' => 'No Podcast Reviews found in Trash',
                 'parent' => 'Parent Podcast Review'
            		), 
+           		'publicly_queryable' => true,
             	'public' => true,
             	'menu_position' => 15,
             	'menu_icon' => 'dashicons-microphone',
@@ -126,9 +190,9 @@ class sv_first_plugin
 		{
 			update_post_meta( $post_id, 'episode_input',  esc_html( $_POST['episode_input'] ) );
 		}
-	}
+	}	
 	
-	  
+		  
 }	
 $sv_first_plugin = new sv_first_plugin();
 ?>
