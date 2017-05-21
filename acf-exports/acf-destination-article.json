@@ -1,0 +1,239 @@
+[
+    {
+        "key": "group_550375e2edd7f",
+        "title": "Destination Article",
+        "fields": [
+            {
+                "key": "field_54f918fb68e3d",
+                "label": "Subtitle",
+                "name": "destination_article_subtitle",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "formatting": "html",
+                "maxlength": "",
+                "readonly": 0,
+                "disabled": 0
+            },
+            {
+                "key": "field_54f9190d68e3e",
+                "label": "Magazine Issue",
+                "name": "destination_article_magazine_issue",
+                "type": "relationship",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "object",
+                "post_type": [
+                    "magazine_issue"
+                ],
+                "taxonomy": [],
+                "filters": [
+                    "search"
+                ],
+                "result_elements": "",
+                "max": 1,
+                "elements": [],
+                "min": 0
+            },
+            {
+                "key": "field_54f9194368e3f",
+                "label": "Primary City",
+                "name": "destination_article_primary_city",
+                "type": "relationship",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "post_type": [
+                    "place"
+                ],
+                "taxonomy": [
+                    "place-type:city"
+                ],
+                "filters": [
+                    "search"
+                ],
+                "elements": "",
+                "max": 1,
+                "return_format": "object",
+                "min": 0
+            },
+            {
+                "key": "field_54f9199668e40",
+                "label": "Regions",
+                "name": "destination_article_regions",
+                "type": "relationship",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "post_type": [
+                    "region"
+                ],
+                "taxonomy": [],
+                "filters": [
+                    "search"
+                ],
+                "elements": "",
+                "min": "",
+                "max": -1,
+                "return_format": "object"
+            },
+            {
+                "key": "field_54f92c45df70a",
+                "label": "Introduction",
+                "name": "destination_article_introduction",
+                "type": "wysiwyg",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "toolbar": "full",
+                "media_upload": 1,
+                "tabs": "all"
+            },
+            {
+                "key": "field_54f92c76df70b",
+                "label": "Overview",
+                "name": "destination_article_overview",
+                "type": "wysiwyg",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "toolbar": "full",
+                "media_upload": 1,
+                "tabs": "all"
+            },
+            {
+                "key": "field_54fa3f35b05b7",
+                "label": "Cover Image",
+                "name": "destination_article_cover_image",
+                "type": "image",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "preview_size": "thumbnail",
+                "library": "all",
+                "return_format": "array",
+                "min_width": 0,
+                "min_height": 0,
+                "min_size": 0,
+                "max_width": 0,
+                "max_height": 0,
+                "max_size": 0,
+                "mime_types": ""
+            },
+            {
+                "key": "field_54fa4392b05bb",
+                "label": "Related Articles",
+                "name": "destination_article_related_articles",
+                "type": "relationship",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "post_type": [
+                    "post",
+                    "industry_event",
+                    "industry_news",
+                    "destination_article",
+                    "magazine_article",
+                    "destination_showcase"
+                ],
+                "taxonomy": [],
+                "filters": [
+                    "search",
+                    "post_type",
+                    "taxonomy"
+                ],
+                "elements": "",
+                "min": "",
+                "max": "",
+                "return_format": "object"
+            },
+            {
+                "key": "field_54f92d91d4446",
+                "label": "Related Regions Override Text",
+                "name": "destination_article_related_regions_override_text",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "formatting": "html",
+                "maxlength": "",
+                "readonly": 0,
+                "disabled": 0
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "destination_article"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "seamless",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": 1,
+        "description": ""
+    }
+]
